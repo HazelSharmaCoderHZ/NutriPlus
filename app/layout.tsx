@@ -3,7 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "HealthPlus",
+  title: "NutriPlus",
   description: "Your Smart Health Companion",
 };
 

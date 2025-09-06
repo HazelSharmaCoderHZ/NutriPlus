@@ -16,13 +16,13 @@ export default function Navbar() {
               href="/" 
               className="text-xl font-extrabold text-green-500 hover:text-green-400 hover:scale-105 transition"
             >
-              HealthPLUS+
+              NutriPLUS+
             </Link>
 
             {/* Nav Links */}
             <div className="flex space-x-6 sm:space-x-10 text-sm sm:text-base font-semibold">
-              <Link href="/about" className="hover:text-green-400 text-black underline font-bold transition hover:scale-105 duration-300">
-                About
+              <Link href="/services" className="hover:text-green-400 text-black underline font-bold transition hover:scale-105 duration-300">
+                About us
               </Link>
               <Link href="/contact" className="hover:text-green-400 font-bold transition underline text-black duration-300 shadow-sm hover:scale-105">
                 Contact Us
@@ -63,8 +63,8 @@ export default function Navbar() {
 </button>
 </Link>
 <br></br><br></br>
-        <h1 className="text-white text-left text-1xl mb-10 sm:text-3xl ">AI-powered predictions, personalized health insights, and 24/7 monitoring
-Choose a healthier tomorrow.<br></br>Take a step towards your health today!</h1>
+        <h1 className="text-white text-left text-1xl mb-10 sm:text-3xl ">Personalized diets, continuous monitoring, and intelligent food recommendations<br></br>
+Take control of your health journey today!</h1>
   
   <div className="border-t border-gray-500 mb-2 mt-20"></div>
 
@@ -75,9 +75,6 @@ Choose a healthier tomorrow.<br></br>Take a step towards your health today!</h1>
     </a>
     <a href="#services" className="text-gray-300 hover:text-green-400 hover:scale-104 underline">
       Our Services
-    </a>
-    <a href="/about" className="text-gray-300 hover:text-green-400 underline hover:scale-104">
-      About the Author
     </a>
     <a href="#FAQs" className="text-gray-300 hover:text-green-400 underline hover:scale-104">
       FAQs

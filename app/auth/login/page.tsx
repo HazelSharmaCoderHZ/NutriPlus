@@ -10,6 +10,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [busy, setBusy] = useState(false);
   
   const [showLoader, setShowLoader] = useState(true);
@@ -56,253 +57,94 @@ export default function LoginPage() {
 
   if (showLoader) {
     return (
-     <div className="flex  flex-col md:flex-row"> 
-    <div className="flex items-center  justify-center h-screen w-screen ">
-      <svg
-        width="480"
-        height="480"
-        viewBox="-5 -5 40 40"
-        xmlns="http://www.w3.org/2000/svg"
-        className="drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-      >
-        <defs>
-          <filter id="glow" x="-50%" y="-50%" width="400%" height="400%">
-            <feGaussianBlur stdDeviation="2" result="blur"></feGaussianBlur>
-            <feMerge>
-              <feMergeNode in="blur"></feMergeNode>
-              <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-          </filter>
-        </defs>
-
-        
-        <circle fill="#ffffffff" r="0.1" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#b599caff" r="0.15" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.05s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#925bbeff" r="0.2" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.1s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#68e8a3ff" r="0.25" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.15s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#00ffaeff" r="0.3" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.2s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#00b7eb" r="0.35" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.25s"
-            dur="3.5s"
-          />
-        </circle>
-        
-      </svg>
-    </div>
-    <div className="flex items-center  justify-center h-screen w-screen ">
-      <svg
-        width="350"
-        height="350"
-        viewBox="-5 -15 40 40"
-        xmlns="http://www.w3.org/2000/svg"
-        className="drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-      >
-        <defs>
-          <filter id="glow" x="-50%" y="-50%" width="400%" height="400%">
-            <feGaussianBlur stdDeviation="2" result="blur"></feGaussianBlur>
-            <feMerge>
-              <feMergeNode in="blur"></feMergeNode>
-              <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-          </filter>
-        </defs>
-
-        
-        <circle fill="#ffffffff" r="0.1" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#b599caff" r="0.15" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.05s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#925bbeff" r="0.2" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.1s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#68e8a3ff" r="0.25" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.15s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#00ffaeff" r="0.3" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.2s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#00b7eb" r="0.35" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.25s"
-            dur="3.5s"
-          />
-        </circle>
-        
-      </svg>
-    </div>
-    <div className="flex items-center  justify-center h-screen w-screen ">
-      <svg
-        width="480"
-        height="480"
-        viewBox="-5 -5 40 40"
-        xmlns="http://www.w3.org/2000/svg"
-        className="drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-      >
-        <defs>
-          <filter id="glow" x="-50%" y="-50%" width="400%" height="400%">
-            <feGaussianBlur stdDeviation="2" result="blur"></feGaussianBlur>
-            <feMerge>
-              <feMergeNode in="blur"></feMergeNode>
-              <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-          </filter>
-        </defs>
-
-        
-        <circle fill="#ffffffff" r="0.1" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#b599caff" r="0.15" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.05s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#925bbeff" r="0.2" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.1s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#68e8a3ff" r="0.25" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.15s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#00ffaeff" r="0.3" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.2s"
-            dur="3.5s"
-          />
-        </circle>
-        <circle fill="#00b7eb" r="0.35" filter="url(#glow)">
-          <animateMotion
-            path="M 23.8 0.5 C 17.5 -1.4 1.4 20.9 9.9 27.3 C 14.2 30.5 21.9 22.9 23.8 17.8 C 28 7 2.1 3.3 0.4 11.6 C -0.4 15.9 10 18.3 12.6 18.7 C 25.2 20.5 31.5 2.9 23.8 0.5 Z"
-            repeatCount="indefinite"
-            begin="-0.25s"
-            dur="3.5s"
-          />
-        </circle>
-        
-      </svg>
+     <div className="flex fixed inset-0 items-center justify-center  w-screen h-screen"> 
+     <div className="loader-container">
+       <div className="loader">
+  <span className="item"></span>
+  <span className="item"></span>
+  <span className="item"></span>
+  <span className="item"></span>
+</div>
     </div>
     </div>
   );
   }
 
+  
   return (
-    <main className="mx-auto max-w-md px-6 py-16">
-      <h1 className="text-3xl font-semibold">Log in</h1>
-      <form onSubmit={handleEmailLogin} className="mt-6 space-y-4">
+    
+
+    <main className="relative  w-screen h-screen flex items-center justify-center bg-[url('/bgg.png')] bg-cover bg-center bg-no-repeat px-4">
+  
+  <div className="w-full max-w-md sm:w-1/2 h-auto bg-white/70 border rounded-2xl shadow-xl flex flex-col justify-center px-6 py-6">
+    <h1 className="text-3xl font-bold text-center text-black mb-4">
+      Nutri<span className="text-indigo-600">Plus</span>🍃
+    </h1>
+    <h3 className="text-xl font-bold text-center text-black mb-6">
+      Create Account
+    </h3>
+
+    <form onSubmit={handleEmailLogin} className="flex flex-col gap-4">
+      <input
+        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        placeholder="Email"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+
+      {/* Password with toggle */}
+      <div className="relative w-full">
         <input
-          className="w-full rounded-2xl border px-4 py-2"
-          placeholder="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          className="w-full rounded-2xl border px-4 py-2"
-          placeholder="Password"
-          type="password"
+          className="w-full rounded-xl border border-gray-300 px-4 py-3 pr-12 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Password (min 6 chars)"
+          type={showPassword ? "text" : "password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          minLength={6}
         />
-        {err && <p className="text-sm text-red-600">{err}</p>}
-        <button disabled={busy} className="w-full rounded-2xl border px-4 py-2">
-          {busy ? "Please wait..." : "Log in"}
-        </button>
-      </form>
-
-      <div className="mt-6">
-        <button onClick={handleGoogle} className="w-full rounded-2xl border px-4 py-2">
-          Continue with Google
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-indigo-600 hover:text-indigo-400"
+        >
+          {showPassword ? "Hide" : "Show"}
         </button>
       </div>
 
-      <p className="mt-4 text-sm">
-        Don’t have an account? <a className="underline" href="/signup">Sign up</a>
+      {err && <p className="text-sm text-red-500">{err}</p>}
+
+      <div className="flex justify-center">
+        <button
+          disabled={busy}
+          className="w-1/2 rounded-xl bg-indigo-600 hover:bg-indigo-900 text-white font-medium px-4 py-3 transition disabled:opacity-50"
+        >
+          {busy ? "Please wait..." : "Sign Up"}
+        </button>
+      </div>
+    </form>
+
+    {/* Bottom links */}
+    <div className="mt-6 flex flex-col sm:flex-row sm:justify-between sm:items-center text-lg text-black gap-3 sm:gap-0">
+      
+
+      {/* Already have an account */}
+      <p className="text-center sm:text-right">
+        Already have an account?{" "}
+        <a
+          className="underline text-indigo-600 hover:text-blue-500"
+          href="/auth/signup"
+        >
+          Log in
+        </a>
       </p>
+    </div>
+      </div>
+      
     </main>
+    
   );
 }
+
