@@ -121,7 +121,7 @@ export default function LoginPage() {
           disabled={busy}
           className="w-1/2 rounded-xl bg-indigo-600 hover:bg-indigo-900 text-white font-medium px-4 py-3 transition disabled:opacity-50"
         >
-          {busy ? "Please wait..." : "Sign Up"}
+          {busy ? "Please wait..." : "Login"}
         </button>
       </div>
     </form>
@@ -132,12 +132,12 @@ export default function LoginPage() {
 
       {/* Already have an account */}
       <p className="text-center sm:text-right">
-        Already have an account?{" "}
+        Dont have an account?{" "}
         <a
           className="underline text-indigo-600 hover:text-blue-500"
           href="/auth/signup"
         >
-          Log in
+          Sign in
         </a>
       </p>
     </div>

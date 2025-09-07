@@ -1,24 +1,23 @@
-// src/lib/firebase.ts
-import { initializeApp, getApps, getApp } from "firebase/app";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-// import analytics conditionally
-import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCNnndGS9zB_hDNmByYmYIYzRo-Cslo37Q",
-  authDomain: "healthplus-42ae6.firebaseapp.com",
-  projectId: "healthplus-42ae6",
-  storageBucket: "healthplus-42ae6.firebasestorage.app",
-  messagingSenderId: "537306765031",
-  appId: "1:537306765031:web:9c9654ff0b5f839805f442",
-  measurementId: "G-LM9BMN9EPV"
+  apiKey: "AIzaSyDSWiNsbcm1iYQwFOqQ0lP04gnifrKolhs",
+  authDomain: "nutriplus-72271.firebaseapp.com",
+  projectId: "nutriplus-72271",
+  storageBucket: "nutriplus-72271.firebasestorage.app",
+  messagingSenderId: "920005003427",
+  appId: "1:920005003427:web:85831d760d615428875716",
+  measurementId: "G-NCXS94ZL27"
 };
 
-// Prevent initializing multiple times during HMR
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const app = initializeApp(firebaseConfig);
 
-// Auth works everywhere (SSR safe)
 export const auth = getAuth(app);
-
-// Analytics only works in browser (CSR only)
-export const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;
+export const db = getFirestore(app);
