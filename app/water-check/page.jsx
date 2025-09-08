@@ -65,7 +65,7 @@ export default function WaterCheckPage() {
   }, [user, weight, glasses]);
 
   if (!user) {
-    return <p className="text-center mt-20 text-lg">Please log in to track water intake.</p>;
+    return <p className="text-center text-white mt-20 text-lg">Please log in to track water intake.</p>;
   }
 
   if (loading) return <p className="text-center mt-20">Loading...</p>;

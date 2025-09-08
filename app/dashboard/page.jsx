@@ -2,9 +2,11 @@
 
 import Protected from "@/components/Protected";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
   const { user, signOutUser } = useAuth();
+  const router = useRouter();
 
   return (
     <Protected>
@@ -153,11 +155,19 @@ export default function DashboardPage() {
         {/* Sign Out */}
         <div className="flex justify-end mr-12 mt-12">
   <button
-    onClick={signOutUser}
-    className="rounded-2xl border border-green px-5 py-2 hover:bg-red-500 text-white bg-white/10 hover:text-white transition"
-  >
-    Sign out
-  </button>
+  onClick={async () => {
+    try {
+      await signOutUser();   
+      router.push("/");     
+    } catch (err) {
+      console.error("Sign out failed:", err);
+    }
+  }}
+  className="rounded-2xl border border-green px-5 py-2 hover:bg-red-500 text-white bg-white/10 hover:text-white transition"
+>
+  Sign out
+</button>
+
 </div>
       </main>
     </Protected>

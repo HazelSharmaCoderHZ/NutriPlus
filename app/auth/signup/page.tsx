@@ -85,7 +85,7 @@ export default function SignupPage() {
       {/* Go Back Option */}
       <button
         type="button"
-        onClick={() => router.back()}
+        onClick={() => router.push("/")}
         className="underline text-indigo-600 hover:text-indigo-400 flex items-center justify-center"
       >
         <span className="mr-1">👈</span> Go Back
