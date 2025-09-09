@@ -3,6 +3,8 @@
 import Protected from "@/components/Protected";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase"; 
 
 export default function DashboardPage() {
   const { user, signOutUser } = useAuth();
@@ -36,7 +38,7 @@ export default function DashboardPage() {
           </a>
 
           <a
-            href="/calorie-count"
+            href="/calorie"
             className="p-4 bg-white/10 rounded-2xl border border-white hover:scale-110 border-gray-700 hover:bg-green-600 hover:text-white transition flex flex-col items-center justify-center"
           >
             <img
@@ -154,19 +156,17 @@ export default function DashboardPage() {
 
         {/* Sign Out */}
         <div className="flex justify-end mr-12 mt-12">
-  <button
-  onClick={async () => {
-    try {
-      await signOutUser();   
-      router.push("/");     
-    } catch (err) {
-      console.error("Sign out failed:", err);
-    }
-  }}
-  className="rounded-2xl border border-green px-5 py-2 hover:bg-red-500 text-white bg-white/10 hover:text-white transition"
->
-  Sign out
-</button>
+  <a
+      href="/"
+      onClick={async (e) => {
+        e.preventDefault(); 
+        await signOut(auth); 
+        window.location.href = "/"; 
+      }}
+      className="underline border bg-red-500 px-3 py-2 rounded-lg text-white hover:scale-105 hover:bg-red-600"
+    >
+      Sign out
+    </a>
 
 </div>
       </main>

@@ -65,7 +65,13 @@ export default function WaterCheckPage() {
   }, [user, weight, glasses]);
 
   if (!user) {
-    return <p className="text-center text-white mt-20 text-lg">Please log in to track water intake.</p>;
+    return <p className="text-center text-white mt-20 text-lg">Please log in to track water intake.<br></br>
+    <a
+          className="underline text-indigo-600 hover:text-blue-500"
+          href="/auth/login"
+        >
+          Login
+        </a></p>;
   }
 
   if (loading) return <p className="text-center mt-20">Loading...</p>;
@@ -82,7 +88,7 @@ export default function WaterCheckPage() {
       
 
       {/* Input for weight */}
-      <div className="bg-blue-500 border p-6 rounded-2xl shadow-lg w-full max-w-md">
+      <div className="bg-gradient-to-r from-indigo-500 via-blue-500 to-indigo-400 border p-6 rounded-2xl shadow-lg w-full max-w-md">
         <label className="block text-lg mb-2">Enter your weight (kg):</label>
         <input
           type="number"
@@ -105,7 +111,7 @@ export default function WaterCheckPage() {
 
       {/* Progress Tracker */}
       {weight && (
-        <div className="mt-5 w-full max-w-md bg-blue-500 border p-6 rounded-2xl shadow-lg">
+        <div className="mt-5 w-full max-w-md bg-gradient-to-r from-indigo-400 via-purple-400 to-purple-500 border p-6 rounded-2xl shadow-lg">
           <h2 className="text-xl font-semibold mb-4">Your Progress</h2>
 
           <div className="w-full bg-gray-700 rounded-full h-4 mb-4">
