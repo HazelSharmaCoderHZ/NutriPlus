@@ -47,7 +47,7 @@ export default function DashboardPage() {
             />
             <div className="w-12 h-[1px] bg-white my-2"></div>
             <span className="font-semibold text-white text-center">
-              Calorie Count
+              Know your food
             </span>
           </a>
 
