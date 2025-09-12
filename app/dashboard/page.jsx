@@ -12,7 +12,7 @@ export default function DashboardPage() {
 
   return (
     <Protected>
-      <main className="bg-gradient-to-r from-indigo-700 via-black to-indigo-700 px-6 py-12">
+      <main className="bg-gradient-to-r from-indigo-700 via-black to-indigo-700 px-6 mx-auto py-12">
         <h1 className="text-4xl text-white font-bold">
           Get healthier with NutriPlus🍃
         </h1>
@@ -25,17 +25,8 @@ export default function DashboardPage() {
         <h2 className="text-2xl font-semibold text-center text-green-600 mt-8 mb-4">
           Main Features
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <a
-            href="/ai-chatbot"
-            className="p-4 bg-white/10 rounded-2xl hover:scale-110 border border-white border-gray-700 hover:bg-green-600 hover:text-white transition flex flex-col items-center justify-center"
-          >
-            <img src="/ai.png" className="w-full h-full object-contain" />
-            <div className="w-12 h-[1px] bg-white my-2"></div>
-            <span className="font-semibold text-white text-center">
-              AI Chatbot
-            </span>
-          </a>
+        <div className="grid grid-cols-2 sm:grid-cols-2 mx-auto max-w-5xl md:grid-cols-4 gap-6">
+          
 
           <a
             href="/calorie"
@@ -52,7 +43,7 @@ export default function DashboardPage() {
           </a>
 
           <a
-            href="/nutrition-calendar"
+            href="/nut"
             className="p-4 bg-white/10 rounded-2xl border border-white hover:scale-110 border-gray-700 hover:bg-green-600 hover:text-white transition flex flex-col items-center justify-center"
           >
             <img
@@ -84,10 +75,10 @@ export default function DashboardPage() {
         <h2 className="text-2xl text-center font-semibold text-yellow-400 mt-12 mb-4">
           <br></br>Try These Out
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 mx-auto max-w-5xl sm:grid-cols-2 md:grid-cols-3 gap-6">
           <a
             href="/water-check"
-            className="p-4 bg-white/10 rounded-xl border border-white hover:scale-110 border-gray-700 hover:bg-yellow-500 hover:text-white transition flex flex-col items-center justify-center"
+            className="p-4 bg-white/10  rounded-xl border border-white hover:scale-110 border-gray-700 hover:bg-yellow-500 hover:text-white transition flex flex-col items-center justify-center"
           >
             <img
               src="/water.png"
@@ -112,7 +103,7 @@ export default function DashboardPage() {
 
           <a
             href="/exercises"
-            className="p-4 bg-white/10 rounded-xl border border-white hover:scale-110 border-gray-700 hover:bg-yellow-500 hover:text-white transition flex flex-col items-center justify-center"
+            className="p-4 bg-white/10  rounded-xl border border-white hover:scale-110 border-gray-700 hover:bg-yellow-500 hover:text-white transition flex flex-col items-center justify-center"
           >
             <img
               src="/yoga.png"

@@ -2,17 +2,23 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { db } from "@/lib/firebase";
+import { doc, collection, addDoc } from "firebase/firestore";
+import { useAuth } from "@/context/AuthContext";
 
 export default function KnowYourFood() {
   const [food, setFood] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { user } = useAuth();
 
   const fetchNutrition = async () => {
     if (!food) return;
     setError("");
     setResult(null);
+    setLoading(true);
 
     try {
       const res = await fetch(
@@ -34,6 +40,45 @@ export default function KnowYourFood() {
       }
     } catch (err) {
       setError("Something went wrong. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logToCalendar = async () => {
+    if (!user) {
+      alert("⚠️ Please log in to save items to your calendar.");
+      return;
+    }
+
+    if (!result) return;
+
+    try {
+      const today = new Date().toISOString().split("T")[0]; 
+
+      const nutritionData = {
+        name: result.name,
+        calories: result.calories,
+        protein: result.protein_g,
+        carbs: result.carbohydrates_total_g,
+        fat: result.fat_total_g,
+        sugar: result.sugar_g,
+        fiber: result.fiber_g,
+        cholesterol: result.cholesterol_mg,
+        sodium: result.sodium_mg,
+        potassium: result.potassium_mg,
+        loggedAt: new Date(),
+      };
+
+      const userDoc = doc(db, "nutritionLogs", user.uid);
+      const dayCollection = collection(userDoc, today);
+
+      await addDoc(dayCollection, nutritionData);
+
+      alert("✅ Item logged to today's consumption!");
+    } catch (err) {
+      console.error("Error logging item:", err);
+      alert("❌ Failed to log item. Try again.");
     }
   };
 
@@ -77,7 +122,7 @@ export default function KnowYourFood() {
           onClick={fetchNutrition}
           className="px-6 py-2 bg-green-200 rounded-lg hover:bg-white/30 transition"
         >
-          Check Nutrition
+          {loading ? "⏳ Checking..." : "Check Nutrition"}
         </button>
 
         {result && (
@@ -92,6 +137,14 @@ export default function KnowYourFood() {
             <p>Cholesterol: {result.cholesterol_mg} mg</p>
             <p>Sodium: {result.sodium_mg} mg</p>
             <p>Potassium: {result.potassium_mg} mg</p>
+
+            {/* Log button */}
+            <button
+              onClick={logToCalendar}
+              className="mt-4 px-4 border border-2xl border-white py-2 bg-indigo-900 text-white rounded-lg hover:bg-purple-600 transition w-full"
+            >
+              ✅ Log this item to today’s consumption
+            </button>
           </div>
         )}
 
