@@ -109,14 +109,16 @@ export default function KnowYourFood() {
       {/* Right Side - Nutrition Info */}
       <div className="w-full md:w-1/2 flex flex-col items-center">
         <h1 className="text-5xl text-white font-bold mb-6">🥗 Know Your Food</h1>
-
+        <label class="label mb-7 mt-7 hover:bg-black hover:text-white">
+          <div class="shortcut">🔍</div>
         <input
           type="text"
           value={food}
           onChange={(e) => setFood(e.target.value)}
           placeholder="Enter food item (e.g. rice, apple)"
-          className="px-4 py-2 bg-gradient-to-r from-blue-200 to-cyan-100 rounded-lg text-black w-80 mb-4"
+          className=" search_bar "
         />
+        </label> 
 
         <button
           onClick={fetchNutrition}
