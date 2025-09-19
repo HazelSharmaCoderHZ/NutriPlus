@@ -41,7 +41,7 @@ export default function NutritionCalendar() {
       </div>
 
       {/* Daily Summary */}
-      <div className="mt-6 w-full md:w-2/3 lg:w-1/2 bg-gradient-to-r from-blue-400 to-indigo-500 p-6 rounded-lg shadow-lg text-white">
+      <div className="mt-6 w-full md:w-2/3 lg:w-1/2 bg-gradient-to-r border from-blue-400 via-indigo-600 to-yellow-400 p-6 rounded-lg shadow-lg text-white">
         <h2 className="text-2xl font-semibold mb-4">
           {date.toDateString()} Summary
         </h2>

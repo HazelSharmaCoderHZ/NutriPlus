@@ -45,7 +45,7 @@ export default function RecipesPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-white relative overflow-hidden">
+    <main className="min-h-screen bg-black flex flex-col items-center justify-center p-6 text-white relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute -top-20 -left-20 w-96 h-96 bg-purple-700 rounded-full blur-3xl opacity-30 animate-pulse"></div>
       <div className="absolute -bottom-20 -right-20 w-[28rem] h-[28rem] bg-indigo-700 rounded-full blur-3xl opacity-30 animate-pulse"></div>

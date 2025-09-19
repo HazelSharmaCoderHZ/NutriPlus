@@ -7,37 +7,38 @@ export default function Navbar() {
     <>
     
       {/* Header / Navbar */}
-      <header className="fixed top-0 left-0 w-full z-20">
-        <div className="backdrop-blur-md bg-white/20 border-b border-white/80 shadow-lg">
-          <nav className="flex justify-between items-center max-w-7xl mx-auto px-4 sm:px-8 py-3">
+      <header className="top-0  w-full z-20">
+        
+          <nav className="flex  justify-between items-center max-w-7xl mx-auto px-4 sm:px-8 py-3">
             
             {/* Logo / Brand */}
             <Link 
               href="/" 
               className="text-xl font-extrabold text-green-500 hover:text-green-400 hover:scale-105 transition"
-            >
-              NutriPLUS+
+            > <span className="font-extrabold text-4xl bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent">+</span>
+              NutriPLUS
             </Link>
 
             {/* Nav Links */}
             <div className="flex space-x-6 sm:space-x-10 text-sm sm:text-base font-semibold">
-              <Link href="/services" className="hover:text-green-400 text-black underline font-bold transition hover:scale-105 duration-300">
+              
+              <Link href="/services" className="hover:text-green-400 button bg-white/10 rounded-2xl border border-2xl px-6 py-1 text-black font-bold transition hover:scale-105 duration-300">
                 About us
               </Link>
-              <Link href="/contact" className="hover:text-green-400 font-bold transition underline text-black duration-300 shadow-sm hover:scale-105">
+              <Link href="/contact" className="hover:text-green-400 button font-bold transition  text-black duration-300 bg-white/10 rounded-2xl border border-2xl px-6 py-1 text-black shadow-sm hover:scale-105">
                 Contact Us
               </Link>
             </div>
           </nav>
-        </div>
+        
       </header>
 
       {/* Main Content */}
-      <main className="min-h-screen flex flex-col pt-20 md:flex-row items-center md:items-start text-center   md:text-left justify-between bg-blue px-6 sm:px-12">
-         <div className="flex flex-col max-w-3xl ">
-        <h1 className="text-5xl sm:text-7xl font-bold  text-cyan-200 text-center md:text-left">
+      <main className="min-h-screen flex flex-col overflow-x-hidden  md:flex-row items-center md:items-start text-center   md:text-left justify-center gap-x-28  bg-blue px-6 sm:px-12">
+         <div className="flex flex-col flex-grow max-w-3xl ">
+        <h1 className="text-5x mt-8 sm:text-6xl font-bold  bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent text-center md:text-left">
           YOUR HEALTH IS OUR{" "}<br></br>
-          <span className="text-cyan-300 sm:text-8xl">
+          <span className="text-[#00CAFF] sm:text-7xl">
             {"PRIORITY".split("").map((letter, i) => (
               <span key={i} className="hover:opacity-0 inline-block">
                 {letter}
@@ -45,8 +46,12 @@ export default function Navbar() {
             ))}
           </span>
           .
-        </h1> <br></br><br></br>
-        <Link href="/auth/signup">
+        </h1> 
+        
+<br></br><br></br>
+        <p className="text-white text-left mb-10 text-[1.4rem] ">Personalized diets, continuous monitoring, and intelligent food recommendations.
+Take control of your health journey today!</p>
+<Link href="/auth/signup">
         <button className="w-full sm:w-1/4   
       mx-auto sm:mx-0   
       block animated-button ">
@@ -64,29 +69,14 @@ export default function Navbar() {
   </svg>
 </button>
 </Link>
-<br></br><br></br>
-        <h1 className="text-white text-left text-1xl mb-10 sm:text-3xl ">Personalized diets, continuous monitoring, and intelligent food recommendations<br></br>
-Take control of your health journey today!</h1>
-  
-  <div className="border-t border-gray-500 mb-2 mt-20"></div>
 
-<p className="text-white font-bold text-2xl mt-2 ">Useful Links</p><br></br>
-<div className="grid grid-cols-1 gap-2 text-sm">
-    <a href="#connect " className="text-gray-300 hover:text-green-400 underline hover:scale-104">
-      Connect with us
-    </a>
-    <a href="#services" className="text-gray-300 hover:text-green-400 hover:scale-104 underline">
-      Our Services
-    </a>
-    <a href="#FAQs" className="text-gray-300 hover:text-green-400 underline hover:scale-104">
-      FAQs
-    </a>
-  </div>
+  
+  
 
 </div>
         
          
-    <div className="dna hidden md:block max-w-[350px] mr-0 lg:mr-12 hover:opacity-70 ">
+    <div className="dna hidden mr-12 items-start justify-left md:block max-w-[320px] mt-5 hover:opacity-70 ">
       <div className="link">
         <div></div>
         <div></div>
@@ -151,38 +141,9 @@ Take control of your health journey today!</h1>
         <div></div>
         <div></div>
       </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="link">
-        <div></div>
-        <div></div>
-      </div>
+      
+      
+      
     </div>
     
       </main>

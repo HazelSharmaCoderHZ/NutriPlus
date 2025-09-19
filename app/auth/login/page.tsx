@@ -76,7 +76,7 @@ export default function LoginPage() {
 
     <main className="relative  w-screen h-screen flex items-center justify-center bg-[url('/bgg.png')] bg-cover bg-center bg-no-repeat px-4">
   
-  <div className="w-full max-w-md sm:w-1/2 h-auto bg-white/70 border rounded-2xl shadow-xl flex flex-col justify-center px-6 py-6">
+  <div className="w-full max-w-md sm:w-1/2 h-auto bg-white/70 border rounded-2xl shadow-xl border border-transparent flex flex-col justify-center px-6 py-6">
     <h1 className="text-3xl font-bold text-center text-black mb-4">
       Nutri<span className="text-indigo-600">Plus</span>🍃
     </h1>
