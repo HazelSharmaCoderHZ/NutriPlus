@@ -109,8 +109,8 @@ export default function KnowYourFood() {
       {/* Right Side - Nutrition Info */}
       <div className="w-full md:w-1/2 flex flex-col items-center">
         <h1 className="text-5xl text-white font-bold mb-6">🥗 Know Your Food</h1>
-        <label class="label mb-7 mt-7 hover:bg-black hover:text-white">
-          <div class="shortcut">🔍</div>
+        <label className="label mb-7 mt-7 hover:bg-black hover:text-white">
+          <div className="shortcut">🔍</div>
         <input
           type="text"
           value={food}
