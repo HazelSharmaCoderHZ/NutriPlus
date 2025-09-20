@@ -13,6 +13,8 @@ export default function SleepLogPage() {
   const router = useRouter();
   const { user } = useAuth();
 
+  const today = new Date().toISOString().split("T")[0]; // 📅 current date
+
   const calculateDuration = (bed, wake) => {
     const [bh, bm] = bed.split(":").map(Number);
     const [wh, wm] = wake.split(":").map(Number);
@@ -44,7 +46,6 @@ export default function SleepLogPage() {
 
     setLoading(true);
     try {
-      const today = new Date().toISOString().split("T")[0];
       const duration = calculateDuration(bedtime, wakeup);
 
       const userDoc = doc(db, "sleepLogs", user.uid);
@@ -54,6 +55,8 @@ export default function SleepLogPage() {
         bedtime,
         wakeup,
         duration: Number(duration),
+        date: today,
+        userId: user.uid, // store user ID as well
         loggedAt: new Date(),
       });
 
@@ -70,7 +73,15 @@ export default function SleepLogPage() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6">
-      <h1 className="text-4xl font-bold text-white mb-6">😴 Sleep Tracker</h1>
+      <h1 className="text-4xl font-bold text-white mb-6">Sleep Tracker</h1>
+
+      {/* Show date + user ID */}
+      {user && (
+        <div className="mb-6 text-center text-white">
+          <p>Date: <span className="font-semibold">{today}</span></p>
+          <p>User ID: <span className="font-mono">{user?.email ?? user?.displayName}</span></p>
+        </div>
+      )}
 
       <div className="bg-white/20 rounded-lg backdrop-blur-lg p-6 rounded-xl shadow-lg w-full max-w-md text-black">
         <label className="block mb-4">

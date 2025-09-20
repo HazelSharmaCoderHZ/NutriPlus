@@ -2056,3 +2056,26 @@ html, body {
   font-size: 16px;
   color: rgb(111, 115, 119);
 }
+
+.containerr {
+  width: 100%;
+  height: 100%;
+  /* Add your background pattern here */
+  /* background-color: lightblue; */
+  background-image: radial-gradient(black 55%, #0000),
+    /* radial-gradient(black 55%, #0000), */
+      linear-gradient(
+        135deg,
+        rgb(55, 20, 255),
+        rgb(136, 0, 255),
+        rgb(0, 238, 255),
+        rgb(238, 255, 0),
+        rgb(238, 255, 0),
+        rgb(0, 132, 255),
+        indigo,
+        rgb(0, 255, 208)
+      );
+  background-size: 100% 0.5%, contain;
+  /* background-blend-mode: hard-light; */
+  /* background-position: 0 0, 1em 1em, 0 0; */
+}

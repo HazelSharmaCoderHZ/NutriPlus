@@ -13,89 +13,111 @@ export default function SleepCalendarPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) return;
-
-    const fetchSleepLogs = async () => {
-      setLoading(true);
-      try {
-        const userDoc = doc(db, "sleepLogs", user.uid);
-
-        // Firestore sleep logs are stored as subcollections under each date
-        // So we first get all date subcollections
-        const datesSnapshot = await getDocs(collection(db, "sleepLogs", user.uid));
-        let allLogs = {};
-
-        for (const dateDoc of datesSnapshot.docs) {
-          const date = dateDoc.id;
-          const dayLogsSnap = await getDocs(collection(userDoc, date));
-          const entries = dayLogsSnap.docs.map((d) => d.data());
-
-          // Take the average sleep duration of the day (in case multiple entries)
-          const avgDuration =
-            entries.reduce((sum, e) => sum + e.duration, 0) / entries.length;
-
-          allLogs[date] = avgDuration.toFixed(1);
-        }
-
-        setLogs(allLogs);
-      } catch (err) {
-        console.error("Error fetching sleep logs:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSleepLogs();
+    if (user) fetchSleepLogs();
   }, [user]);
 
-  if (!user) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        <p className="text-white text-lg">⚠️ Please log in to view your sleep calendar.</p>
-      </main>
-    );
-  }
+  const fetchSleepLogs = async () => {
+    try {
+      setLoading(true);
+
+      const userDoc = doc(db, "sleepLogs", user.uid);
+      const today = new Date();
+      const currentMonth = today.getMonth();
+      const currentYear = today.getFullYear();
+
+      let logsMap = {};
+
+      for (let d = 1; d <= 31; d++) {
+        const dateObj = new Date(currentYear, currentMonth, d);
+        if (dateObj.getMonth() !== currentMonth) break;
+
+        const dateKey = dateObj.toISOString().split("T")[0];
+        const dayCollection = collection(userDoc, dateKey);
+        const snap = await getDocs(dayCollection);
+
+        if (!snap.empty) {
+          let totalDuration = 0;
+          snap.forEach((doc) => {
+            totalDuration += doc.data().duration || 0;
+          });
+          logsMap[dateKey] = totalDuration;
+        } else {
+          logsMap[dateKey] = null; // no data
+        }
+      }
+
+      setLogs(logsMap);
+    } catch (err) {
+      console.error("Error fetching sleep logs:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getColor = (hours) => {
+    if (hours === null) return "bg-white/10 border border-white";
+    if (hours < 6) return "bg-red-500 border border-white";
+    if (hours <= 8) return "bg-yellow-400 border border-white";
+    return "bg-green-600 border border-white";
+  };
+
+  const today = new Date();
+  const currentMonth = today.toLocaleString("default", { month: "long" });
+  const currentYear = today.getFullYear();
+  const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6">
-      <h1 className="text-4xl font-bold text-white mb-6">📅 Sleep Calendar</h1>
+    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-white">
+      <h1 className="text-4xl mb-5">
+        Your Sleep Insights This Month
+        <span className="text-cyan-500 font-extrabold">.</span>
+      </h1>
+      <h2 className="text-lg mb-3">
+        {currentMonth} {currentYear}
+      </h2>
 
       {loading ? (
-        <p className="text-white">⏳ Loading...</p>
-      ) : Object.keys(logs).length === 0 ? (
-        <p className="text-white">No sleep logs yet.</p>
+        <p>⏳ Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-3xl">
-          {Object.entries(logs).map(([date, duration]) => (
-            <div
-              key={date}
-              className="bg-white/20 backdrop-blur-lg p-4 rounded-xl shadow-lg text-white flex flex-col items-center"
-            >
-              <p className="text-lg font-bold">{date}</p>
-              <p className="text-xl">😴 {duration} hrs</p>
-              <p
-                className={`mt-2 px-3 py-1 rounded-full text-sm ${
-                  duration >= 7
-                    ? "bg-green-500/80"
-                    : duration >= 5
-                    ? "bg-yellow-500/80"
-                    : "bg-red-500/80"
-                }`}
-              >
-                {duration >= 7
-                  ? "✅ Healthy sleep"
-                  : duration >= 5
-                  ? "⚠️ Moderate sleep"
-                  : "❌ Poor sleep"}
-              </p>
-            </div>
-          ))}
+        <div className="backdrop-blur-lg p-5 rounded-2xl shadow-xl border w-full max-w-2xl">
+          {/* Weekday Header Row */}
+          <div className="grid grid-cols-7 gap-2 mr-4 mb-2">
+            {weekdays.map((day) => (
+              <div key={day} className="text-center font-semibold text-gray-300">
+                {day}
+              </div>
+            ))}
+          </div>
+
+          {/* Days Grid */}
+          <div className="grid grid-cols-7 gap-2">
+            {[...Array(daysInMonth)].map((_, i) => {
+              const day = i + 1;
+              const dateKey = new Date(today.getFullYear(), today.getMonth(), day)
+                .toISOString()
+                .split("T")[0];
+              const hours = logs[dateKey] ?? null;
+
+              return (
+                <div
+                  key={day}
+                  className={`h-14 w-16 flex flex-col justify-center items-center rounded-lg ${getColor(
+                    hours
+                  )}`}
+                >
+                  <span className="font-bold">{day}</span>
+                  <span className="text-xs">{hours ? `${hours}h` : "-"}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 
       <button
         onClick={() => router.push("/dashboard")}
-        className="mt-6 px-4 py-2 bg-red-600 rounded-lg hover:bg-red-500 transition"
+        className="mt-6 px-3 py-1 text-sm bg-red-600 rounded-lg hover:bg-red-500 transition"
       >
         ⬅ Go Back
       </button>
