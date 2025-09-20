@@ -2079,3 +2079,12 @@ html, body {
   /* background-blend-mode: hard-light; */
   /* background-position: 0 0, 1em 1em, 0 0; */
 }
+
+/* Hide scrollbar but keep scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

@@ -29,34 +29,42 @@ export default function DashboardPage() {
 
   // Scroll function
   const scroll = (ref, direction) => {
-    if (ref.current) {
-      const scrollAmount = 300; // pixels per click
+  if (ref.current) {
+    const card = ref.current.querySelector("a");
+    if (card) {
+      const cardWidth = card.offsetWidth + 24; // 24px ~ gap-6
       ref.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+        left: direction === "left" ? -cardWidth : cardWidth,
         behavior: "smooth",
       });
     }
-  };
-
+  }
+};
   return (
     <Protected>
-      <main className="bg-gradient-to-r from-indigo-900 via-black to-blue-900 px-6 mx-auto py-12 min-h-screen">
-        <h1 className="text-4xl text-white font-bold text-center">
-          Get healthier with NutriPlus🍃
+      <main className="bg-gradient-to-t from-black via-black to-black px-6 mx-auto py-12 min-h-screen">
+        {/* Top Left Circle */}
+<div className="absolute -bottom-1 -left-20 w-96 h-96 bg-indigo-700 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+
+{/* Top Right Circle */}
+<div className="absolute -top-50 -right-2 w-96 h-96 bg-indigo-700 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+
+        <h1 className="text-5xl font-bold bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent text-center">
+          Get healthier with NutriPlus
         </h1>
-        <p className="mt-2 mb-6 text-white text-center">
+        <p className="mt-2 mb-3 text-white text-center">
           Welcome, {user?.email ?? user?.displayName} 👋
         </p>
 
         {/* White container wrapper */}
-        
-          <h2 className="text-2xl font-semibold text-center text-green-600 mb-6">
+        <div className="border-t shadow shadow-xl shadow-cyan border-gray-500  mt-20"></div>
+          <h2 className="text-2xl font-semibold text-center mt-12 bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent mb-6">
             Main Features
           </h2>
           <div className="flex justify-center gap-8">
             <a
               href="/calorie"
-              className="w-46 p-6 hover:scale-105  bg-[conic-gradient(from_180deg_at_50%_50%,rgba(164,51,255,0.7)_0%,rgba(0,255,209,0.7)_50%,rgba(164,51,255,0.7)_100%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:text-white transition flex flex-col items-center justify-center"
+              className="w-46 p-6 hover:scale-105 border border-2xl border-white bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:text-white transition flex flex-col items-center justify-center"
             >
               <img src="/calorie.png" className="w-32 h-38 object-contain" />
               <div className="w-12 h-[1px] bg-white my-2"></div>
@@ -67,7 +75,7 @@ export default function DashboardPage() {
 
             <a
               href="/nut"
-              className="w-46 p-6 hover:scale-105 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(164,51,255,0.7)_0%,rgba(0,255,209,0.7)_50%,rgba(164,51,255,0.7)_100%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:text-white transition flex flex-col items-center justify-center"
+              className="w-46 p-6 hover:scale-105 border border-2xl border-white  bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:text-white transition flex flex-col items-center justify-center"
             >
               <img src="/cal.png" className="w-32 h-38 object-contain" />
               <div className="w-12 h-[1px] bg-white my-2"></div>
@@ -78,7 +86,7 @@ export default function DashboardPage() {
 
             <a
               href="/recipes"
-              className="w-46 p-6 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(164,51,255,0.7)_0%,rgba(0,255,209,0.7)_50%,rgba(164,51,255,0.7)_100%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:scale-105 hover:text-white transition flex flex-col items-center justify-center"
+              className="w-46 p-6 border border-2xl border-white  bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:scale-105 hover:text-white transition flex flex-col items-center justify-center"
             >
               <img src="/rec.png" className="w-32 h-38 object-contain" />
               <div className="w-12 h-[1px] bg-white my-2"></div>
@@ -89,52 +97,57 @@ export default function DashboardPage() {
           </div>
 
           {/* Try These Out */}
-          <h2 className="text-2xl font-semibold text-center text-yellow-500 mt-12 mb-4">
-            Try These Out
-          </h2>
-          <div className="relative">
-            <button
-              onClick={() => scroll(tryRef, "left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 p-2 rounded-full shadow"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
+<h2 className="text-2xl font-semibold text-center bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent mt-12 mb-1">
+  Try These Out
+</h2>
 
-            <div
-              ref={tryRef}
-              className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth py-8 px-16 "
-            >
-              {[
-                { href: "/water-check", img: "/water.png", label: "Water Check" },
-                { href: "/bmi", img: "/bmi.png", label: "BMI Calculator" },
-                { href: "/exercises", img: "/yoga.png", label: "Exercises" },
-                { href: "/sleep", img: "/sleep.png", label: "Sleep Tracker" },
-                { href: "/health-tips", img: "/cat.png", label: " Your Category" },
-                { href: "/sleepcal", img: "/bmi.png", label: "Sleep Calendar" },
-              ].map((item, i) => (
-                <a
-                  key={i}
-                  href={item.href}
-                  className={`min-w-[120px] p-11 h-[180px] bg-[conic-gradient(from_180deg_at_50%_50%,rgba(164,51,255,0.7)_0%,rgba(0,255,209,0.7)_50%,rgba(164,51,255,0.7)_100%)] animate-spin-slow rounded-xl border border-gray-700 hover:bg-yellow-500 hover:text-white transition-transform duration-500 flex flex-col items-center justify-center
-                    ${activeIndex === i ? "scale-110 shadow-xl z-10" : "scale-100 opacity-80"}
-                  `}
-                >
-                  <img src={item.img} className="w-30 h-30 object-contain" />
-                  <div className="w-10 h-[1px] bg-white my-3"></div>
-                  <span className="font-medium text-white text-center text-sm">
-                    {item.label}
-                  </span>
-                </a>
-              ))}
-            </div>
+<div className="relative max-w-6xl mx-auto">
+  {/* Left Arrow */}
+  <button
+    onClick={() => scroll(tryRef, "left")}
+    className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-gray-200 hover:bg-gray-300 p-2 rounded-full shadow"
+  >
+    <ChevronLeft className="w-5 h-5" />
+  </button>
 
-            <button
-              onClick={() => scroll(tryRef, "right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 p-2 rounded-full shadow"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+  {/* Scrollable Row */}
+  <div
+    ref={tryRef}
+    className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth py-8 px-12"
+  >
+    {[
+      { href: "/water-check", img: "/water.png", label: "Water Check" },
+      { href: "/bmi", img: "/bmi.png", label: "BMI Calculator" },
+      { href: "/exercises", img: "/yoga.png", label: "Exercises" },
+      { href: "/sleep", img: "/sleep.png", label: "Sleep Tracker" },
+      { href: "/health-tips", img: "/cat.png", label: "Your Category" },
+      { href: "/sleepcal", img: "/bmi.png", label: "Sleep Calendar" },
+    ].map((item, i) => (
+      <a
+        key={i}
+        href={item.href}
+        className={`min-w-[calc(20%-1rem)] p-6 h-[180px] bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] rounded-xl border border-gray-700 hover:bg-yellow-500 hover:text-white transition-transform duration-500 flex flex-col items-center justify-center
+          ${activeIndex === i ? "scale-110 shadow-xl z-10" : "scale-100 opacity-80"}
+        `}
+      >
+        <img src={item.img} className="w-20 h-20 object-contain" />
+        <div className="w-10 h-[1px] bg-white my-3"></div>
+        <span className="font-medium text-white text-center text-sm">
+          {item.label}
+        </span>
+      </a>
+    ))}
+  </div>
+
+  {/* Right Arrow */}
+  <button
+    onClick={() => scroll(tryRef, "right")}
+    className="absolute right-7 top-1/2 -translate-y-1/2 z-20 bg-gray-200 hover:bg-gray-300 p-2 rounded-full shadow"
+  >
+    <ChevronRight className="w-5 h-5" />
+  </button>
+</div>
+
         
 
         {/* Sign Out */}

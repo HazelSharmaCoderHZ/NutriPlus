@@ -68,10 +68,10 @@ export default function SleepCalendarPage() {
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-white">
+    <main className="min-h-screen bg-gradient-to-t from-yellow-600 via-black to-black flex flex-col items-center justify-center p-6 text-white">
       <h1 className="text-4xl mb-5">
-        Your Sleep Insights This Month
-        <span className="text-cyan-500 font-extrabold">.</span>
+        Your <span className="text-yellow-700">Sleep Insights</span> This Month
+        <span className="text-yellow-700 font-extrabold">.</span>
       </h1>
       <h2 className="text-lg mb-3">
         {currentMonth} {currentYear}
@@ -80,9 +80,9 @@ export default function SleepCalendarPage() {
       {loading ? (
         <p>⏳ Loading...</p>
       ) : (
-        <div className="backdrop-blur-lg p-5 rounded-2xl shadow-xl border w-full max-w-2xl">
+        <div className="backdrop-blur-lg bg-black p-5 rounded-2xl shadow-4xl border w-full max-w-2xl">
           {/* Weekday Header Row */}
-          <div className="grid grid-cols-7 gap-2 mr-4 mb-2">
+          <div className="grid grid-cols-7 gap-2 mr-3 mb-2">
             {weekdays.map((day) => (
               <div key={day} className="text-center font-semibold text-gray-300">
                 {day}
@@ -102,7 +102,7 @@ export default function SleepCalendarPage() {
               return (
                 <div
                   key={day}
-                  className={`h-14 w-16 flex flex-col justify-center items-center rounded-lg ${getColor(
+                  className={`h-13 w-16 flex ml-2 flex-col justify-center items-center rounded-lg ${getColor(
                     hours
                   )}`}
                 >
@@ -117,7 +117,7 @@ export default function SleepCalendarPage() {
 
       <button
         onClick={() => router.push("/dashboard")}
-        className="mt-6 px-3 py-1 text-sm bg-red-600 rounded-lg hover:bg-red-500 transition"
+        className="mt-6 px-3 py-1 text-sm bg-black rounded-lg hover:bg-red-500 transition"
       >
         ⬅ Go Back
       </button>

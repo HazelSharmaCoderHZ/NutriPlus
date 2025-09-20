@@ -83,7 +83,7 @@ export default function SleepLogPage() {
         </div>
       )}
 
-      <div className="bg-white/20 rounded-lg backdrop-blur-lg p-6 rounded-xl shadow-lg w-full max-w-md text-black">
+      <div className=" border border-white rounded-lg backdrop-blur-lg p-6 rounded-xl shadow-lg w-full max-w-md text-black">
         <label className="block mb-4">
           <span className="text-white">🛏 Bedtime</span>
           <input
