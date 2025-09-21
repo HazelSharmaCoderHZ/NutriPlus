@@ -3,6 +3,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { db, auth } from "@/lib/firebase";
+import ThemeToggle from "components/ThemeToggle";
 
 export default function SetupPage() {
   const router = useRouter();
@@ -43,9 +44,11 @@ export default function SetupPage() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-6 ">
+    <main className="flex min-h-screen dark:bg-violet-200 items-center justify-center px-6 ">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 w-full max-w-6xl">
-        
+        <div className="absolute top-4 left-4 z-50">
+  <ThemeToggle />
+</div>
         <div className="hidden lg:flex justify-center w-full h-full">
           <div className="loading">
   <div className="loading-wide">
@@ -66,7 +69,7 @@ export default function SetupPage() {
 
         {/* Setup form */}
         <div className="flex justify-center">
-          <div className="w-full max-w-md rounded-2xl bg-white/10 border border-green-500 p-8 shadow-lg backdrop-blur">
+          <div className="w-full max-w-md rounded-2xl dark:bg-black/80 bg-white/10 border border-green-500 p-8 shadow-lg backdrop-blur">
             <h1 className="text-2xl font-bold text-green-100">Complete Your Setup</h1>
             <p className="mt-2 text-gray-100">
               Tell us about yourself so we can personalize your experience.

@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Providers from "./providers";
+import { ThemeProvider } from "../context/ThemeContext";
+import { AuthProvider } from "src/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "NutriPlus",
   description: "Your Smart Health Companion",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen bg-white text-gray-900">
-        <Providers>{children}</Providers>
+        <AuthProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
 }
-

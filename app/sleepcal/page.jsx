@@ -91,27 +91,28 @@ export default function SleepCalendarPage() {
           </div>
 
           {/* Days Grid */}
-          <div className="grid grid-cols-7 gap-2">
-            {[...Array(daysInMonth)].map((_, i) => {
-              const day = i + 1;
-              const dateKey = new Date(today.getFullYear(), today.getMonth(), day)
-                .toISOString()
-                .split("T")[0];
-              const hours = logs[dateKey] ?? null;
+<div className="grid grid-cols-7 gap-1 sm:gap-2">
+  {[...Array(daysInMonth)].map((_, i) => {
+    const day = i + 1;
+    const dateKey = new Date(today.getFullYear(), today.getMonth(), day)
+      .toISOString()
+      .split("T")[0];
+    const hours = logs[dateKey] ?? null;
 
-              return (
-                <div
-                  key={day}
-                  className={`h-13 w-16 flex ml-2 flex-col justify-center items-center rounded-lg ${getColor(
-                    hours
-                  )}`}
-                >
-                  <span className="font-bold">{day}</span>
-                  <span className="text-xs">{hours ? `${hours}h` : "-"}</span>
-                </div>
-              );
-            })}
-          </div>
+    return (
+      <div
+        key={day}
+        className={`aspect-square flex flex-col justify-center items-center rounded-lg text-center ${getColor(
+          hours
+        )}`}
+      >
+        <span className="font-bold text-sm sm:text-base">{day}</span>
+        <span className="text-[10px] sm:text-xs">{hours ? `${hours}h` : "-"}</span>
+      </div>
+    );
+  })}
+</div>
+
         </div>
       )}
 

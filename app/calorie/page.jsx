@@ -73,7 +73,20 @@ export default function KnowYourFood() {
       const userDoc = doc(db, "nutritionLogs", user.uid);
       const dayCollection = collection(userDoc, today);
 
-      await addDoc(dayCollection, nutritionData);
+       await addDoc(dayCollection, {
+  name: result.name,
+  calories: result.calories,
+  protein_g: result.protein_g,
+  carbs: result.carbohydrates_total_g, // same key used in calendar
+  fat: result.fat_total_g,
+  sugar: result.sugar_g,
+  fiber: result.fiber_g,
+  cholesterol: result.cholesterol_mg,
+  sodium: result.sodium_mg,
+  potassium: result.potassium_mg,
+  loggedAt: new Date(),
+});
+
 
       alert("✅ Item logged to today's consumption!");
     } catch (err) {

@@ -7,6 +7,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import ThemeToggle from "../../components/ThemeToggle";
+
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -42,29 +44,33 @@ export default function DashboardPage() {
 };
   return (
     <Protected>
-      <main className="bg-gradient-to-t from-black via-black to-black px-6 mx-auto py-12 min-h-screen">
+      <main className="dark:to-white dark:via-blue-500 dark:from-purple-400 bg-gradient-to-t from-violet-900 via-black to-black  px-6 mx-auto py-12 min-h-screen">
         {/* Top Left Circle */}
-<div className="absolute -bottom-1 -left-20 w-96 h-96 bg-indigo-700 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+        
+<div className="absolute -bottom-1 -left-25 w-96 h-96 bg-indigo-700 rounded-full blur-3xl opacity-30 animate-pulse"></div>
 
 {/* Top Right Circle */}
-<div className="absolute -top-50 -right-2 w-96 h-96 bg-indigo-700 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+<div className="absolute -top-50 -right-2 w-96 h-96 bg-indigo-700  rounded-full blur-3xl opacity-30 animate-pulse"></div>
+<div className="absolute top-4 right-4 z-50">
+  <ThemeToggle />
+</div>
 
         <h1 className="text-5xl font-bold bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent text-center">
           Get healthier with NutriPlus
         </h1>
-        <p className="mt-2 mb-3 text-white text-center">
+        <p className="mt-2 mb-3 text-white dark:text-black text-center">
           Welcome, {user?.email ?? user?.displayName} 👋
         </p>
 
         {/* White container wrapper */}
         <div className="border-t shadow shadow-xl shadow-cyan border-gray-500  mt-20"></div>
-          <h2 className="text-2xl font-semibold text-center mt-12 bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent mb-6">
+          <h2 className="text-2xl font-semibold text-center dark:text-black mt-12 bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent mb-6">
             Main Features
           </h2>
           <div className="flex justify-center gap-8">
             <a
               href="/calorie"
-              className="w-46 p-6 hover:scale-105 border border-2xl border-white bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:text-white transition flex flex-col items-center justify-center"
+              className="w-46 p-6 hover:scale-105 border border-2xl  border-white bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:text-white transition flex flex-col items-center justify-center"
             >
               <img src="/calorie.png" className="w-32 h-38 object-contain" />
               <div className="w-12 h-[1px] bg-white my-2"></div>
@@ -97,8 +103,8 @@ export default function DashboardPage() {
           </div>
 
           {/* Try These Out */}
-<h2 className="text-2xl font-semibold text-center bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent mt-12 mb-1">
-  Try These Out
+<h2 className="text-2xl font-semibold text-center dark:text-black bg-gradient-to-r from-[#8a58ce] to-[#00CAFF] bg-clip-text text-transparent mt-12 mb-1">
+  <br></br>Try These Out
 </h2>
 
 <div className="relative max-w-6xl mx-auto">
@@ -120,22 +126,30 @@ export default function DashboardPage() {
       { href: "/bmi", img: "/bmi.png", label: "BMI Calculator" },
       { href: "/exercises", img: "/yoga.png", label: "Exercises" },
       { href: "/sleep", img: "/sleep.png", label: "Sleep Tracker" },
-      { href: "/health-tips", img: "/cat.png", label: "Your Category" },
+      { href: "/cat", img: "/cat.png", label: "Your Category" },
       { href: "/sleepcal", img: "/bmi.png", label: "Sleep Calendar" },
     ].map((item, i) => (
       <a
-        key={i}
-        href={item.href}
-        className={`min-w-[calc(20%-1rem)] p-6 h-[180px] bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] rounded-xl border border-gray-700 hover:bg-yellow-500 hover:text-white transition-transform duration-500 flex flex-col items-center justify-center
-          ${activeIndex === i ? "scale-110 shadow-xl z-10" : "scale-100 opacity-80"}
-        `}
-      >
-        <img src={item.img} className="w-20 h-20 object-contain" />
-        <div className="w-10 h-[1px] bg-white my-3"></div>
-        <span className="font-medium text-white text-center text-sm">
-          {item.label}
-        </span>
-      </a>
+  key={i}
+  href={item.href}
+  className={`min-w-[70%] sm:min-w-[40%] md:min-w-[30%] lg:min-w-[20%] 
+    p-6 h-[200px] bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] 
+    rounded-xl border border-gray-700 border border-white border-xl hover:bg-yellow-500 hover:text-white 
+    transition-transform duration-500 flex flex-col items-center justify-center
+    ${
+      activeIndex === i
+        ? "sm:scale-110 sm:shadow-xl sm:z-10" // only animate on sm and above
+        : "sm:scale-100 sm:opacity-80"        // only affect larger screens
+    }
+  `}
+>
+  <img src={item.img} className="w-20 h-20 object-contain" />
+  <div className="w-10 h-[1px] bg-white my-3"></div>
+  <span className="font-medium text-white text-center text-sm">
+    {item.label}
+  </span>
+</a>
+
     ))}
   </div>
 
