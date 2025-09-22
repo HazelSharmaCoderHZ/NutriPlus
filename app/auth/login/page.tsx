@@ -81,7 +81,7 @@ export default function LoginPage() {
       Nutri<span className="text-indigo-600">Plus</span>🍃
     </h1>
     <h3 className="text-xl font-bold text-center text-black mb-6">
-      Create Account
+      Welcome Back!
     </h3>
 
     <form onSubmit={handleEmailLogin} className="flex flex-col gap-4">

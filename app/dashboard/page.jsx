@@ -117,6 +117,7 @@ export default function DashboardPage() {
   </button>
 
   {/* Scrollable Row */}
+  
   <div
     ref={tryRef}
     className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth py-8 px-12"
@@ -126,7 +127,6 @@ export default function DashboardPage() {
       { href: "/bmi", img: "/bmi.png", label: "BMI Calculator" },
       { href: "/exercises", img: "/yoga.png", label: "Exercises" },
       { href: "/sleep", img: "/sleep.png", label: "Sleep Tracker" },
-      { href: "/cat", img: "/cat.png", label: "Your Category" },
       { href: "/sleepcal", img: "/bmi.png", label: "Sleep Calendar" },
     ].map((item, i) => (
       <a
