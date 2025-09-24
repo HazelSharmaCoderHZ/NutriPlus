@@ -182,6 +182,23 @@ export default function Navbar() {
     </div>
   </div>
 </section>
+<section  className="min-h-screen flex flex-col justify-center items-center px-6 sm:px-12 py-20 bg-blue dark:bg-violet-300 dark:from-violet-500 dark:to-pink-500">
+  <footer className="mb-3">
+  <div className="border-t border-gray-500  mt-20"></div>
+
+<p className="text-white font-bold text-2xl mt-2 ">Useful Links</p><br></br>
+<div className="grid grid-cols-1 gap-2 text-sm">
+    <a href="#connect " className="text-gray-300 hover:text-green-400 underline hover:scale-104">
+      Connect with us
+    </a>
+    <a href="#services" className="text-gray-300 hover:text-green-400 hover:scale-104 underline">
+      Our Services
+    </a>
+    <a href="#FAQs" className="text-gray-300 hover:text-green-400 underline hover:scale-104">
+      FAQs
+    </a>
+  </div> </footer>
+</section>
 
     </>
   );
