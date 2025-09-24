@@ -100,6 +100,17 @@ export default function DashboardPage() {
                 Recipes
               </span>
             </a>
+            <a
+              href="/chatbot"
+              className="w-46 p-6 hover:scale-105 border border-2xl  border-white bg-[radial-gradient(circle_at_center,rgba(0,0,255,0.7)_0%,rgba(31,29,29,0.9)_90%)] animate-spin-slow rounded-2xl border border-gray-700 hover:bg-green-800 hover:text-white transition flex flex-col items-center justify-center"
+            >
+              <img src="/calorie.png" className="w-32 h-38 object-contain" />
+              <div className="w-12 h-[1px] bg-white my-2"></div>
+              <span className="font-semibold text-white text-center">
+                HealthBot
+              </span>
+            </a>
+
           </div>
 
           {/* Try These Out */}
