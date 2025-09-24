@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import TopMenuButton from "../../components/TopMenuButton";
 
 export default function BMICalculatorPage() {
   const [weight, setWeight] = useState(""); 
@@ -40,7 +41,7 @@ export default function BMICalculatorPage() {
     <main className="min-h-screen flex flex-row  items-center justify-center 
       bg-gradient-to-r from-cyan  to-cyan text-white p-6 relative overflow-hidden">
 
-      {/* Futuristic glowing background circles */}
+      <TopMenuButton /> 
       <div className="absolute -top-10 -left-10 w-80 h-80 bg-purple-800 rounded-full blur-3xl opacity-30 animate-pulse"></div>
       <div className="absolute -bottom-20 -right-10 w-96 h-96 bg-indigo-800 rounded-full blur-3xl opacity-30 animate-pulse"></div>
 

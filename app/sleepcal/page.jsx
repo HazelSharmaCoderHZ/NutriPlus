@@ -5,6 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, doc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import TopMenuButton from "../../components/TopMenuButton"; 
 
 export default function SleepCalendarPage() {
   const { user } = useAuth();
@@ -69,6 +70,7 @@ export default function SleepCalendarPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-t from-yellow-600 via-black to-black flex flex-col items-center justify-center p-6 text-white">
+      <TopMenuButton /> 
       <h1 className="text-4xl mb-5">
         Your <span className="text-yellow-700">Sleep Insights</span> This Month
         <span className="text-yellow-700 font-extrabold">.</span>

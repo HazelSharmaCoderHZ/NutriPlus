@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { db } from "@/lib/firebase"; // ✅ adjust path if needed
+import { db } from "@/lib/firebase"; 
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { useAuth } from "@/context/AuthContext"; // ✅ adjust path if needed
+import { useAuth } from "@/context/AuthContext"; 
 import { useRouter } from "next/navigation";
+import TopMenuButton from "../../components/TopMenuButton";  
 
 export default function WaterCheckPage() {
   const { user } = useAuth();
@@ -21,12 +22,12 @@ export default function WaterCheckPage() {
   const consumed = glasses * glassSize;
   const percentage = recommended ? Math.min((consumed / recommended) * 100, 100) : 0;
 
-  // 🔹 Show popup message once on page load
+
   useEffect(() => {
     alert("💧 Reminder: Your water tracker resets every midnight!");
   }, []);
 
-  // 🔹 Load today's data when user logs in
+  
   useEffect(() => {
     if (!user) return;
 
@@ -46,7 +47,7 @@ export default function WaterCheckPage() {
     fetchData();
   }, [user, today]);
 
-  // 🔹 Save progress whenever weight or glasses change
+  
   useEffect(() => {
     if (!user || !weight) return;
 
@@ -78,7 +79,8 @@ export default function WaterCheckPage() {
 
   return (
     <main className="min-h-screen firstpageanim text-white flex flex-col items-center py-12 px-6">
-      <h1 className="text-3xl mt-4 hover:text-green-100 font-bold mb-2">
+      
+      <TopMenuButton /> <h1 className="text-3xl mt-4 hover:text-green-100 font-bold mb-2">
         💧 Water Intake Tracker
       </h1>
       <p className="mb-6 text-gray-300">

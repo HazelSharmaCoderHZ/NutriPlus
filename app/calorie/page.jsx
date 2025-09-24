@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { doc, collection, addDoc } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
+import TopMenuButton from "../../components/TopMenuButton";
 
 export default function KnowYourFoodComparison() {
   const [food1, setFood1] = useState("");
@@ -86,6 +87,7 @@ export default function KnowYourFoodComparison() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-between p-6">
+       <TopMenuButton /> 
       <div className="flex flex-col md:flex-row items-center justify-center w-full">
         {/* Left Food Input */}
         <div className="w-full md:w-1/3 flex flex-col items-center mb-6 md:mb-0">

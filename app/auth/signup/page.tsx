@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import ThemeToggle from "../../../components/ThemeToggle";
 
 export default function SignupPage() {
   const { signUpEmail } = useAuth();

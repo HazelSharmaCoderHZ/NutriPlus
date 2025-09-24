@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { doc, collection, addDoc } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
+import TopMenuButton from "../../components/TopMenuButton";
 
 export default function SleepLogPage() {
   const [bedtime, setBedtime] = useState("");
@@ -73,6 +74,7 @@ export default function SleepLogPage() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6">
+      <TopMenuButton /> 
       <h1 className="text-4xl font-bold text-white mb-6">Sleep Tracker</h1>
 
       {/* Show date + user ID */}

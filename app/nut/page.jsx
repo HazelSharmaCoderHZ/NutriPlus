@@ -5,6 +5,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import TopMenuButton from "../../components/TopMenuButton";  
 
 export default function NutritionCalendar() {
   const [date, setDate] = useState(new Date());
@@ -46,6 +47,7 @@ export default function NutritionCalendar() {
 
   return (
     <main className="min-h-screen p-6 flex flex-col items-center">
+      <TopMenuButton /> 
       <h1 className="text-4xl font-bold text-white mb-6">📅 Nutrition Calendar</h1>
 
       <div className="bg-white rounded-lg shadow-md p-4">

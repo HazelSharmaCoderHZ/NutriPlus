@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import TopMenuButton from "../../components/TopMenuButton"; 
 export default function ExercisesPage() {
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,6 +31,7 @@ export default function ExercisesPage() {
 
   return (
     <div className="p-8 items:center justify-center bg-gradient-to-r from-indigo-900 to-indigo-800 via-red-700 text-center">
+     <TopMenuButton /> 
       <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-300 to-cyan-200 bg-clip-text text-transparent  mb-6">💪 Explore Exercises</h1>
 
       {/* Search/filter */}
